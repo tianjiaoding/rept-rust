@@ -100,8 +100,7 @@ fn upload(content_type: &ContentType, data: Data) -> Result<String, String> {
             fs::create_dir_all(&store_dir);
 
             let mut pdf_target_path = store_dir;
-            pdf_target_path.push(first_name);
-            pdf_target_path.push(".pdf");
+            pdf_target_path.push(format!("{}.pdf", first_name));
 
             fs::rename(_path, &pdf_target_path);
 
