@@ -1,8 +1,10 @@
 extern crate chrono;
-use chrono::{Local, Date, Datelike, Duration, TimeZone};
+use chrono::{Date, Datelike, Duration, TimeZone, FixedOffset, Utc};
 
 pub fn str_next_monday() -> String {
-    let now = Local::now();
+    // TODO: abstract timezone over, maybe in config file or as parameters
+    let timezone = FixedOffset::east(8 * 3600);
+    let now = Utc::now().with_timezone(&timezone);
     let date_next_monday = next_monday(now.date());
     format!("{}", date_next_monday.format("%d%B%y"))
 }
